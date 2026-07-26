@@ -15,6 +15,33 @@
   setTimeout(hide, HOLD);
 })();
 
+/* ---------- Бегущая строка: собираем ровно под ширину экрана ----------
+   Раньше строка была фикс. 7120px — мобильный GPU не тянет такой слой
+   (лимит текстуры ~4096px) и анимация «замерзала». Теперь под каждый
+   экран — минимальная нужная ширина: две идентичные группы, сдвиг -50%. */
+(function () {
+  const track = document.getElementById("marqueeTrack");
+  if (!track) return;
+  const PHRASES = ["Product Ads", "3D Animation", "Motion Design", "CGI", "Lighting", "Look Dev"];
+  const SPEED = 70; // px/сек
+  const setHTML = () => PHRASES.map(p => `<span>${p}</span><i></i>`).join("");
+  function build() {
+    // измеряем ширину одного набора фраз
+    track.innerHTML = `<div class="marquee__group">${setHTML()}</div>`;
+    const oneSet = track.firstElementChild.getBoundingClientRect().width || 1000;
+    const sets = Math.max(1, Math.ceil((window.innerWidth * 1.2) / oneSet));
+    let inner = ""; for (let i = 0; i < sets; i++) inner += setHTML();
+    const group = `<div class="marquee__group">${inner}</div>`;
+    track.innerHTML = group + group;   // две одинаковые группы → бесшовный луп при -50%
+    const groupW = track.firstElementChild.getBoundingClientRect().width;
+    track.style.animationDuration = Math.max(14, Math.round(groupW / SPEED)) + "s";
+  }
+  build();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(build); // пересчёт после загрузки шрифта
+  let t;
+  window.addEventListener("resize", () => { clearTimeout(t); t = setTimeout(build, 250); }, { passive: true });
+})();
+
 /* ========================================================================
    ДАННЫЕ ПРОЕКТОВ  — редактируй здесь:
      title — название,  cat — категория (product | environment | animation),
@@ -199,8 +226,8 @@ if (!reduceMotion) {
       bar.style.transform = `scaleX(${max > 0 ? (y / max).toFixed(4) : 0})`;
     }
 
-    // герой: зум видео + уплывающий и растворяющийся контент
-    if (y < vh * 1.1) {
+    // герой: зум видео + уплывающий контент (только десктоп — на мобилках это лишние перерисовки)
+    if (y < vh * 1.1 && window.innerWidth > 900) {
       const p = Math.min(1, y / vh);
       if (heroVideo) heroVideo.style.transform = `scale(${(1 + p * 0.14).toFixed(3)})`;
       if (heroInner) {

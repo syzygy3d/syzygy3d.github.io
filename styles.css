@@ -90,7 +90,7 @@ h1,h2,h3,.hero__brand { font-family:"Space Grotesk",sans-serif; line-height:1.02
 
 /* ============ MARQUEE ============ */
 .marquee { border-top:1px solid var(--line); border-bottom:1px solid var(--line); overflow:hidden; background:var(--bg-2); }
-.marquee__track { display:flex; width:max-content; animation:marquee 53s linear infinite; }
+.marquee__track { display:flex; width:max-content; animation:marquee 53s linear infinite; will-change:transform; }
 .marquee__group { display:flex; align-items:center; gap:34px; padding:20px 34px 20px 0; white-space:nowrap; flex:0 0 auto; }
 .marquee__group span { font-family:"Space Grotesk"; font-size:clamp(1.4rem,3vw,2.4rem); font-weight:600; text-transform:uppercase; letter-spacing:.02em; }
 /* разделитель — знак сизигии (диск-кольцо-диск) оранжевым, через маску */
