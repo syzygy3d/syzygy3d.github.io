@@ -9,7 +9,12 @@
     // старт hero-видео с нулевого кадра ровно в момент ухода занавеса,
     // чтобы к появлению оно не «убежало» вперёд по кадрам
     const hv = document.querySelector(".hero__video");
-    if (hv) { try { hv.currentTime = 0; } catch (e) {} hv.play().catch(() => {}); }
+    if (hv) {
+      try { hv.currentTime = 0; } catch (e) {}
+      // если автоплей заблокирован (энергосбережение / in-app браузер) — play() отклонится:
+      // прячем video-элемент (и его кнопку play), под ним остаётся фон-кадр клавиатуры
+      hv.play().catch(() => { hv.style.display = "none"; });
+    }
     setTimeout(() => pl.remove(), 1000);
   };
   setTimeout(hide, HOLD);
