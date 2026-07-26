@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>syzygy3d - 3D Product Animation</title>
+  <meta name="description" content="3D artist & animator. Product commercials, animation and full-cycle CGI." />
+
+  <!-- Open Graph (nice previews when you send the link to clients) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="syzygy3d - 3D Product Animation" />
+  <meta property="og:description" content="Product commercials, 3D animation and full-cycle CGI." />
+  <meta property="og:image" content="assets/images/donuts.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="is-loading">
+  <!-- PRELOADER (лого-знак «сизигия»: диск - кольцо-спиннер - диск) -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__mark">
+      <span class="pl-dot"></span>
+      <span class="pl-ring"></span>
+      <span class="pl-dot"></span>
+    </div>
+  </div>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav__brand">
+      <span class="nav__word">syzygy<span>3d</span></span>
+      <svg class="nav__logo" viewBox="0 0 16 44" aria-hidden="true">
+        <circle cx="8" cy="6.5" r="4.6" fill="#fff"/>
+        <circle cx="8" cy="22" r="3.9" fill="none" stroke="#fff" stroke-width="2.3"/>
+        <circle cx="8" cy="37.5" r="4.6" fill="#fff"/>
+      </svg>
+    </a>
+    <nav class="nav__links">
+      <a href="#work">Portfolio</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact" class="nav__cta">Contact me</a>
+    </nav>
+    <button class="nav__burger" id="burger" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <video class="hero__video" autoplay muted loop playsinline preload="auto">
+      <source src="assets/videos/hero.mp4" type="video/mp4" />
+    </video>
+    <div class="hero__overlay"></div>
+    <div class="hero__inner">
+      <span class="badge" data-reveal><i></i> Available for new projects</span>
+      <p class="hero__eyebrow" data-reveal>3D Artist · Motion · Product Ads · E-Commerce</p>
+      <h1 class="hero__title">
+        <span data-reveal>I Create</span>
+        <span data-reveal>Visuals</span>
+        <span data-reveal><em>That Sell.</em></span>
+      </h1>
+      <p class="hero__sub" data-reveal>
+        E-Commerce, animation and full-cycle CGI - from concept and
+        modeling to a final render that sells.
+      </p>
+      <div class="hero__actions" data-reveal>
+        <a href="#work" class="btn btn--solid">View work</a>
+        <a href="#contact" class="btn btn--ghost">Start a project</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <div class="marquee__group">
+        <span>Product Ads</span><i></i><span>3D Animation</span><i></i><span>Motion Design</span><i></i><span>CGI</span><i></i><span>Lighting</span><i></i><span>Look Dev</span><i></i><span>Product Ads</span><i></i><span>3D Animation</span><i></i><span>Motion Design</span><i></i><span>CGI</span><i></i><span>Lighting</span><i></i><span>Look Dev</span><i></i><span>Product Ads</span><i></i><span>3D Animation</span><i></i><span>Motion Design</span><i></i><span>CGI</span><i></i><span>Lighting</span><i></i><span>Look Dev</span><i></i>
+      </div>
+      <div class="marquee__group">
+        <span>Product Ads</span><i></i><span>3D Animation</span><i></i><span>Motion Design</span><i></i><span>CGI</span><i></i><span>Lighting</span><i></i><span>Look Dev</span><i></i><span>Product Ads</span><i></i><span>3D Animation</span><i></i><span>Motion Design</span><i></i><span>CGI</span><i></i><span>Lighting</span><i></i><span>Look Dev</span><i></i><span>Product Ads</span><i></i><span>3D Animation</span><i></i><span>Motion Design</span><i></i><span>CGI</span><i></i><span>Lighting</span><i></i><span>Look Dev</span><i></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATEMENT -->
+  <section class="statement">
+    <p class="statement__label" data-reveal>Approach</p>
+    <p class="statement__text" data-reveal>
+      I make <em>scroll-stopping</em> product films - modeled, lit and animated
+      to make people <em>want the thing</em>, then cut, graded and delivered
+      ready to post.
+    </p>
+  </section>
+
+  <!-- WORK -->
+  <section class="section work" id="work">
+    <div class="section__head">
+      <p class="section__label" data-reveal>01 - Portfolio</p>
+      <h2 class="section__title" data-reveal>Selected work*</h2>
+      <div class="filters" id="filters" data-reveal>
+        <button class="chip is-active" data-filter="all">All</button>
+        <button class="chip" data-filter="product">Product</button>
+        <button class="chip" data-filter="environment">Environment</button>
+        <button class="chip" data-filter="Rig">Rig</button>
+        <button class="chip" data-filter="Aesthetic">Aesthetic</button>
+        <button class="chip" data-filter="Sculpting">Sculpting</button>
+        <button class="chip" data-filter="Mockup">Mockup</button>
+      </div>
+      <p class="work__note" data-reveal>🔊 Click any project to play it full-screen - with sound.</p>
+    </div>
+    <div class="grid" id="grid"><!-- cards injected by script.js --></div>
+    <p class="work__disclaimer" data-reveal>*Personal spec projects. Not commissioned by or affiliated with the brand; created as a self-initiated portfolio piece. All 3D, animation, grade and sound by me.</p>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section about" id="about">
+    <div class="about__grid">
+      <div class="about__media" data-reveal>
+        <img src="assets/images/me.jpg" alt="syzygy3d - 3D artist & animator" class="zoomable" />
+      </div>
+      <div class="about__text">
+      <p class="section__label" data-reveal>02 - About</p>
+      <h2 class="section__title" data-reveal>I animate. Everything I do moves.</h2>
+      <p data-reveal>
+        That's the part I care about - and the part I want to be hired for.
+      </p>
+      <p data-reveal>
+        <span class="mark">Blender</span> for modeling, lighting and animation.
+        <span class="mark">Substance 3D Painter</span> for textures and materials.
+        <span class="mark">DaVinci Resolve</span> for the edit, the color grade and
+        sound design - so what you get is a finished video, not a raw render:
+        cut, graded and exported for the format you need. 9:16 for Reels and
+        TikTok, 1:1 for feed, 16:9 for the product page.
+      </p>
+      <p data-reveal>Stills too, when that's all a project needs.</p>
+      <ul class="skills" data-reveal>
+        <li>Blender</li><li>Substance 3D Painter</li><li>DaVinci Resolve</li>
+        <li>Animation</li><li>Lighting</li><li>Color Grade</li><li>Sound Design</li>
+      </ul>
+      </div>
+    </div>
+
+    <div class="stills">
+      <p class="section__label" data-reveal>Selected stills</p>
+      <div class="stills__grid">
+        <figure class="still" data-reveal>
+          <img src="assets/images/donuts.png" alt="3D still - donuts" loading="lazy" class="zoomable" />
+          <figcaption>Donuts - Blender <span>2025</span></figcaption>
+        </figure>
+        <figure class="still" data-reveal>
+          <img src="assets/images/textured.png" alt="3D still - crate" loading="lazy" class="zoomable" />
+          <figcaption>Crate - Substance 3D Painter <span>2025</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section services" id="services">
+    <div class="section__head">
+      <p class="section__label" data-reveal>03 - Services</p>
+      <h2 class="section__title" data-reveal>What I do</h2>
+    </div>
+    <div class="cards">
+      <article class="card-svc" data-reveal>
+        <span class="card-svc__num">01</span>
+        <h3>Product commercials</h3>
+        <p>Dynamic 3D spots for social and advertising: product reveals, striking lighting and camera motion.</p>
+      </article>
+      <article class="card-svc" data-reveal>
+        <span class="card-svc__num">02</span>
+        <h3>3D animation</h3>
+        <p>Animation of objects, characters and scenes. Motion graphics and looping clips built for the task.</p>
+      </article>
+      <article class="card-svc" data-reveal>
+        <span class="card-svc__num">03</span>
+        <h3>Full-cycle CGI & visualization</h3>
+        <p>The whole pipeline: modeling, texturing, lighting, rendering. A product, interior or environment from scratch.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section contact" id="contact">
+    <p class="section__label" data-reveal>04 - Contact</p>
+    <h2 class="contact__title" data-reveal>Got a product to sell? <em>Let's talk.</em></h2>
+    <p class="contact__sub" data-reveal>
+      Tell me about your product and where it's going, and let's message about
+      the format, timing and budget. I'll take it from idea to a finished,
+      ready-to-post video.
+    </p>
+    <div class="contact__actions" data-reveal>
+      <a class="btn btn--solid" href="https://t.me/syzygy3d" target="_blank" rel="noopener">Message me on Telegram</a>
+      <a class="btn btn--ghost" href="mailto:syzygy3d.business@gmail.com">Send an email</a>
+    </div>
+    <a class="contact__mail" href="mailto:syzygy3d.business@gmail.com" data-reveal>syzygy3d.business@gmail.com</a>
+    <div class="contact__socials" data-reveal>
+      <a href="https://t.me/syzygy3d" target="_blank" rel="noopener">Telegram</a>
+      <a href="https://instagram.com/syzygy3d" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://wa.me/541171044496" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__bar">
+      <span>© <span id="year"></span> syzygy3d</span>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox__close" id="lbClose" aria-label="Close">✕</button>
+    <div class="lightbox__stage">
+      <video id="lbVideo" controls playsinline preload="auto"></video>
+      <img id="lbImg" alt="" />
+      <div class="lightbox__meta">
+        <h3 id="lbTitle"></h3>
+        <span id="lbCat"></span>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
