@@ -6,14 +6,20 @@
   const hide = () => {
     pl.classList.add("is-done");
     document.body.classList.remove("is-loading");
-    // старт hero-видео с нулевого кадра ровно в момент ухода занавеса,
-    // чтобы к появлению оно не «убежало» вперёд по кадрам
+    // старт hero-видео с нулевого кадра ровно в момент ухода занавеса
     const hv = document.querySelector(".hero__video");
     if (hv) {
+      // как только видео РЕАЛЬНО заигралo — гарантированно показываем его
+      // (даже если ниже мы его временно спрятали из-за медленной загрузки)
+      hv.addEventListener("playing", () => { hv.style.display = ""; });
       try { hv.currentTime = 0; } catch (e) {}
-      // если автоплей заблокирован (энергосбережение / in-app браузер) — play() отклонится:
-      // прячем video-элемент (и его кнопку play), под ним остаётся фон-кадр клавиатуры
-      hv.play().catch(() => { hv.style.display = "none"; });
+      const tryPlay = () => { const p = hv.play(); if (p) p.catch(() => {}); };
+      tryPlay();
+      setTimeout(tryPlay, 500);   // повтор: currentTime=0 может «оборвать» первый play()
+      // прячем видео (и его кнопку play) ТОЛЬКО если через 2.5с оно так и НЕ играет —
+      // это настоящий блок автоплея (энергосбережение); тогда виден фон-кадр клавиатуры.
+      // НЕ ориентируемся на ошибку промиса play() — она бывает ложной (AbortError).
+      setTimeout(() => { if (hv.paused) hv.style.display = "none"; }, 2500);
     }
     setTimeout(() => pl.remove(), 1000);
   };
